@@ -1,0 +1,19 @@
+<% if courses %>
+  <div class="row">
+    <% courses.each do |course| %>
+      <div class="item">
+        <div class="col-md-3 col-sm-4 col-xs-12">
+          <div class="panel panel-default">
+            <div class="panel-heading text-center">
+              <img src="<%= "a" %>" alt="講座の画像" >
+            </div>
+            <div class="panel-body">
+              <p class="item-title"><%= link_to course.name, course %></p>
+            </div>
+          </div>
+        </div>
+      </div>
+    <% end %>
+  </div>
+  <%= paginate @courses %>
+<% end %>

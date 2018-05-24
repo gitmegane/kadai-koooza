@@ -6,9 +6,11 @@
           <% unless logged_in? %>
             <%= link_to 'KOOOZAを始める', signup_path, class: 'btn btn-success btn-lg' %>
           <% end %>
+          
       </div>
     </div>
   </div>
 <% end %>
 
+<%= render 'courses/courses', courses: @courses %>
 <p>テスト</p>

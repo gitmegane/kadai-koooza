@@ -3,6 +3,8 @@ class UsersController < ApplicationController
   
   def show
     @user = User.find(params[:id])
+    @courses = @user.courses.order('created_at DESC').page(params[:page])
+    @course = Course.new
   end
 
   def new

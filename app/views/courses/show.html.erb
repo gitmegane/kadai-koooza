@@ -1,0 +1,22 @@
+<div class="row">
+  <div class="col-md-3 col-sm-6 col-xs-12 col-md-offset-3">
+    <div class="item">
+      <div class="panel panel-default">
+        <div class="panel-heading text-center">
+          <img src="<%= "a" %>" alt="講座の画像" >
+        </div>
+        <div class="panel-body">
+          <p class="item-title">講座名：<%= @course.name %></p>
+          <p class="item-title">作者　：<%= @user.name %></p>
+          <div class="buttons text-center">
+            <% if logged_in? %>
+            <% if @user.name == @loginuser %>
+            <%= link_to 'この講座を編集する', edit_course_path(@course), class: 'btn btn-default' %>
+            <% end %>
+            <% end %>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
