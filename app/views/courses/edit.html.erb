@@ -1,5 +1,5 @@
 <h1>講座名： <%= @course.name %> の編集ページ</h1>
 
 <%= render 'form', course: @course %>
-<%= render 'formlesson', course: @course %>
-<%= render 'formlesson', course: @course %>
+<%= render 'lessons/form', course: @course %>
+<%= render 'lessons/formnew', lesson: @lesson, course: @course %>

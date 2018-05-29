@@ -1,0 +1,8 @@
+          <% if current_user.attends?(course) %>
+              <%= link_to 'この講座を受講する', attends_course_path(@course), class: 'btn btn-primary' %>
+          <% else %>
+            <%= form_for(current_user.usercourses.build,  html: { class: 'btn_inline'  }) do |f| %>
+              <%= hidden_field_tag :course_id, course.id %>
+              <%= f.submit 'この講座を受講する', class: 'btn btn-primary btn_inline' %>
+            <% end %>
+          <% end %>

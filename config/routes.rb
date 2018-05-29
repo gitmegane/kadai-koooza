@@ -8,8 +8,25 @@ Rails.application.routes.draw do
   delete 'logout', to: 'sessions#destroy'
   
   get 'signup', to: 'users#new'
-  resources :users, only: [:show, :new, :create]
+  resources :users, only: [:show, :new, :create] do
+      member do
+      get 'attendindex'
 
-  resources :courses
-  resources :lessons, only: [:create, :destroy]
+      end
+  end
+
+  resources :courses do
+    resources :lessons
+        
+    member do
+      get 'attends'
+
+    end
+    
+  end
+
+  get 'login', to: 'sessions#new'
+
+  resources :usercourses, only: [:create, :destroy]
+
 end

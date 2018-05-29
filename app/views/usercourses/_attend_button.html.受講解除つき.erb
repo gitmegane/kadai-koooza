@@ -1,0 +1,11 @@
+          <% if current_user.attends?(course) %>
+            <%= form_for(current_user.usercourses.find_by(course_id: course.id), html: { method: :delete, class: 'btn_inline'  }) do |f| %>
+              <%= hidden_field_tag :course_id, course.id %>
+              <%= f.submit '受講を解除', class: 'btn btn-danger btn_inline' %>
+            <% end %>
+          <% else %>
+            <%= form_for(current_user.usercourses.build,  html: { class: 'btn_inline'  }) do |f| %>
+              <%= hidden_field_tag :course_id, course.id %>
+              <%= f.submit 'この講座を受講する', class: 'btn btn-primary btn_inline' %>
+            <% end %>
+          <% end %>

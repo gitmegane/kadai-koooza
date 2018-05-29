@@ -2,7 +2,8 @@
   <div class="cover">
     <div class="cover-inner">
       <div class="cover-contents">
-        <h1>素敵な講座と出会う場所</h1>
+        <h1>KOOOZA</h1>
+        <h3>楽しい講座と出会う場所</h3>
           <% unless logged_in? %>
             <%= link_to 'KOOOZAを始める', signup_path, class: 'btn btn-success btn-lg' %>
           <% end %>
@@ -13,4 +14,3 @@
 <% end %>
 
 <%= render 'courses/courses', courses: @courses %>
-<p>テスト</p>

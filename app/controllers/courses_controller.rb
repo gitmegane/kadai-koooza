@@ -1,27 +1,44 @@
 class CoursesController < ApplicationController
-  before_action :require_user_logged_in
+  before_action :require_user_logged_in, only: [:new, :edit, :update, :create, :attend]
   before_action :set_course, only: [:update]
     
   def show
     @course = Course.find(params[:id])
     @user = @course.user
+    if logged_in?
     @loginuser = current_user.name
+    end
+  end
+
+  def attends
+    @course = Course.find(params[:id])
+    @user = @course.user
+    @lessons = @course.lessons.all
   end
   
+    
   def new
     @course = Course.new(major_no: 1, content: "")
 
   end
   
   def edit
+
     @course = Course.find(params[:id])
+    if current_user == @course.user
+      @lessons = @course.lessons
+      @lesson = @course.lessons.build
+      #binding.pry
+    else
+      redirect_to root_url
+    end
   end
   
   def update
     #binding.pry
     if @course.update(course_params)
       flash[:success] = '講座が正常に更新されました'
-      redirect_to @course
+      redirect_to edit_course_path
     else
       flash.now[:danger] = '講座が更新されませんでした'
       render :edit
@@ -29,6 +46,7 @@ class CoursesController < ApplicationController
   end
   
   
+
   def create
     @course = current_user.courses.build(major_no: '1', content: "",name: course_params[:name])
     #binding.pry
@@ -44,6 +62,7 @@ class CoursesController < ApplicationController
     end
   end
   
+
   private
 
   def set_course

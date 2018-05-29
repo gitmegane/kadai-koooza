@@ -23,6 +23,14 @@ class UsersController < ApplicationController
     end
   end
   
+  def attendindex
+    @course = Course.new
+    @user = User.find(params[:id])
+    @courses = @user.attends.page(params[:page])
+    #counts(@course)
+  end
+
+  
   private
 
   def user_params

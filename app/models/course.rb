@@ -7,6 +7,9 @@ class Course < ApplicationRecord
   validates :content, length: { maximum: 255 }
   validates :user_id, presence: true
   
-  has_many :courses
+  has_many :lessons
+  
+  has_many :usercourses
+  has_many :attenders, through: :usercourses, source: :user
   
 end

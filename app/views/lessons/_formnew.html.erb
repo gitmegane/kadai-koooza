@@ -1,28 +1,24 @@
 
 <div class="row">
-  
-<%= form_for(course) do |f| %>
-  <% if course.errors.any? %>
+  <%= form_for(lesson, url: course_lessons_path(course) ) do |f| %>
+  <% if lesson.errors.any? %>
     <div class="alert alert-warning">
     <div id="error_explanation">
       <ul>
-        <% course.errors.full_messages.each do |course| %>
-          <li><%= course %></li>
+        <% lesson.errors.full_messages.each do |lesson| %>
+          <li><%= lesson %></li>
         <% end %>
       </ul>
+      
     </div>
-    </div>
+    </div>x
   <% end %>
   <div class="item">
   <div class="panel panel-default">
   <div class="panel-heading">
+  <p>大項目の追加</p>
   <div class="form-group">
-  <%= f.label :name, '講座名' %>
-  <%= f.text_field :name, class: 'form-control' %>
-  </div>
-
-  <div class="form-group">
-  <%= f.label :major_no, 'レッスンNO' %>
+  <%= f.label :major_no, '大項目' %>
   <%= f.text_field :major_no, class: 'form-control' %>
   </div>
 
@@ -31,10 +27,14 @@
   <%= f.text_area :content, class: 'form-control', rows: 10 %>
   </div>
 
-  <%= f.submit '更新', class: 'btn btn-primary' %>
+  <div class="form-group">
+  <%= f.label :image_url, '画像' %>
+  <%= f.text_field :image_url, class: 'form-control' %>
+  </div>
+  
+  <%= f.submit '追加', class: 'btn btn-primary' %>
   </div>
   </div>
   </div>
 <% end %>
-
 </div>
